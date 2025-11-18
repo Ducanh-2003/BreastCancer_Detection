@@ -15,6 +15,29 @@
     * ## Frontend: Xây dựng giao diện (UI) đơn giản bằng **HTML5, CSS3, và JavaScript**, sử dụng **Fetch API** gửi `formData` đến backend, xử lý `JSON` trả về để hiển thị lên giao diện 
 
 ## **Những khó khăn tồn đọng:**
-* ## Khi test để model nhận dạng những ảnh trong valid kết quả trả về sai hoặc nếu đúng thì conf rất thấp
-* ## Khi đưa những ảnh không phải là ảnh tế bào ung thư để nhận dạng thì trả về kết quả là 1 trong 4 class đã train
+* ## Khi test để model nhận dạng những ảnh trong valid kết quả trả về sai hoặc nếu đúng thì conf khá thấp
+![Ảnh valid](frontend/statics/assets/valid1.png)
+* ## Khi đưa những ảnh không phải là ảnh tế bào ung thư để nhận dạng thì trả về kết quả là 1 trong 4 class đã train 
+![Ảnh test](frontend/statics/assets/test2.png)
 
+## **Flowchart:**
+```mermaid
+flowchart TD
+    subgraph "Frontend"
+        A(Bắt đầu: User chọn ảnh) --> B[js: tạo formData cho file ảnh];
+        B --> C[js: gửi Fetch POST đến /api/predict];
+        H[JS: Nhận JSON từ server] --> I["JS: Gán chuỗi Base64 vào <img> (Data URL)"];
+        I --> J[Hiển thị ảnh đã bounding box và text kết quả ];
+        J --> K(Kết thúc: User thấy kết quả);
+        
+    end
+
+    subgraph "Backend"
+        C --> D[Flask: /api/predict nhận request];
+        D --> E[Đọc ảnh dạng bytes, gọi hàm];
+        E --> F[Model nhận img và chạy dự đoán];
+        F --> G[Vẽ bounding bõ và mã hóa base64 ảnh];
+        G --> H[Trả về JSON gồm ảnh encoded và text dự đoán];
+    end
+
+    
