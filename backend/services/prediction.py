@@ -24,16 +24,19 @@ def get_prediction(img_bytes):
     img_base64 = base64.b64encode(buf.getvalue()).decode('utf-8')
     
     detections = []
-    
+    conf_threshold = 0.25
     for box in result[0].boxes:
         confidence = float(box.conf[0])
         class_id = int(box.cls[0])
-        print(f"Detected {model.names[class_id]} with confidence {confidence}")
-        detections.append({
-            "class": model.names[class_id],
-            "confidence": round(confidence, 2)
-        })
-    
+        if confidence >= conf_threshold:
+            print(f"Detected {model.names[class_id]} with confidence {confidence}")
+            detections.append({
+                "class": model.names[class_id],
+                "confidence": round(confidence, 2)
+            })
+        else:
+            print(f"Ignored noise with confidence {confidence}")
+            continue
     
     print(f"Resulting detections: {detections}")
     return {

@@ -26,6 +26,23 @@
 * ## Sau khi train lại với tỉ lệ train/valid/test là 70/20/10 thì model trả về kết quả dự đoán tốt hơn khi test ảnh valid cho ra kết quả dự đoán đúng (>80%)
 
 
+> ## ***19/11/2025***
+
+## **Những gì đã học và làm được:**
+## (Nội dung tương tự 18/11/2025)
+
+## **Những khó khăn tồn đọng:**
+## Khi test với hình ảnh không phải là ảnh mô tế bào vẫn nhận dạng và phân loại vài class Normalcell (conf > 90%)
+
+## ** Hướng giải quyết đã thực hiện:
+* ## Retrain model với bộ dataset cũ được thêm vào 400 hình ảnh car, person, fruit,... được gán nhãn null làm background images để tránh cho mô hình nhận diện nhầm các đối tượng không liên quan
+* ## Đặt Threshold 0.25 để loại bỏ các đối tượng không liên quan mà mô hình có thể nhận diện nhầm với conf thấp
+
+## Kết quả: 
+| Trước | Sau |
+| :---: | :---: |
+| ![Ảnh Valid](frontend/statics/assets/test2.png) | ![Ảnh Test](frontend/statics/assets/test2afterretrain.png) |
+
 ## **Flowchart:**
 ```mermaid
 flowchart TD
