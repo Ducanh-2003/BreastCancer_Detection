@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const txt_result = document.getElementById('txt_result');
     const txt_loading = document.getElementById('txt_loading');
 
-    const api_url = 'http://127.0.0.1:5000/api/predict';
+    const api_url = '/api/predict';
 
     file_input.addEventListener('change', function() {
         const file = this.files[0];

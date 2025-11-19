@@ -29,16 +29,18 @@
 > ## ***19/11/2025***
 
 ## **Những gì đã học và làm được:**
-## (Nội dung tương tự 18/11/2025)
+* ## Tìm ra hướng giải quyết cho vấn đề tồn đọng
+* ## Tìm hiểu cách cơ bản để deploy lên Render
+* ## Tìm hiểu cách bảo mật file `.pt` khi deploy lên môi trường production: lưu file trọng số vào googledrive, server tự động tải model sử dụng file ID được bảo mật trong Environment Variable của Render khi khởi động
 
 ## **Những khó khăn tồn đọng:**
-## Khi test với hình ảnh không phải là ảnh mô tế bào vẫn nhận dạng và phân loại vài class Normalcell (conf > 90%)
+## Khi test với hình ảnh không phải là ảnh mô tế bào vẫn nhận dạng và phân loại vài class Normalcell (conf > 90%) (solved)
 
-## ** Hướng giải quyết đã thực hiện:
+## **Hướng giải quyết đã thực hiện:**
 * ## Retrain model với bộ dataset cũ được thêm vào 400 hình ảnh car, person, fruit,... được gán nhãn null làm background images để tránh cho mô hình nhận diện nhầm các đối tượng không liên quan
 * ## Đặt Threshold 0.25 để loại bỏ các đối tượng không liên quan mà mô hình có thể nhận diện nhầm với conf thấp
 
-## Kết quả: 
+## **Kết quả:** 
 | Trước | Sau |
 | :---: | :---: |
 | ![Ảnh Valid](frontend/statics/assets/test2.png) | ![Ảnh Test](frontend/statics/assets/test2afterretrain.png) |
@@ -49,7 +51,7 @@ flowchart TD
     subgraph "Frontend"
         A(Bắt đầu: User chọn ảnh) --> B[js: tạo formData cho file ảnh];
         B --> C[js: gửi Fetch POST đến /api/predict];
-        H[JS: Nhận JSON từ server] --> I["JS: Gán chuỗi Base64 vào <img> (Data URL)"];
+        H[JS: Nhận JSON từ server] --> I["JS: Gán chuỗi Base64 vào <img> Data URL"];
         I --> J[Hiển thị ảnh đã bounding box và text kết quả ];
         J --> K(Kết thúc: User thấy kết quả);
         
