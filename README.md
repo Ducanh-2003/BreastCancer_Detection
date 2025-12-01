@@ -1,4 +1,4 @@
-# **BreastCancer\_Detection**
+# **BreastCancer Detection**
 
 ## A Flask-based web application for breast cancer prediction from histopathology images.
 
@@ -45,13 +45,53 @@
 | :---: | :---: |
 | ![Ảnh Valid](frontend/statics/assets/test2.png) | ![Ảnh Test](frontend/statics/assets/test2afterretrain.png) |
 
+# **Tuần 2 (24/11/2025 - 28/11/2025)**
+
+## **Nghỉ do thiệt hại mưa lũ**
+
+# **Tuần 3 (1/12/2025 - 5/12/2025)**
+
+>## ***1/12/2025***
+
+## **Những gì đã học và làm được:**
+* ## Tìm hiểu các hàm biến đổi ảnh thực thi như thế nào với thư viện OpenCV 
+* ## Tiếp tục tìm hiểu về dataset được sử dụng
+* ## Cải thiện lại ở bước prepossesing và augmentation dataset chính xác hơn
+* ## Retrain model với dataset mới 
+
+---
+
+## Dataset: https://universe.roboflow.com/anusha-shetty-eprky/cancer-vvl9r
+## Dataset version: https://app.roboflow.com/nguyenducanh/cancer-vvl9r-j83l1/models/cancer-vvl9r-j83l1/1
+## Tài liệu tham khảo: 
+## https://docs.roboflow.com/datasets/dataset-versions/image-preprocessing
+## https://docs.roboflow.com/datasets/dataset-versions/image-augmentation
+## https://docs.roboflow.com/annotate/use-roboflow-annotate#mark-null
+
+
+
 ## **Flowchart:**
 ```mermaid
-flowchart TD
-    subgraph "Frontend"
+flowchart BT
+
+    subgraph Init [Giai đoạn 1: Khởi động Server]
+        Start(Chạy run.py) --> Check{Kiểm tra file .pt}
+        
+        %% Nhánh Local
+        Check -- "Đã có (Local)" --> Load
+        
+        %% Nhánh Production
+        Check -- "Chưa có (Production)" --> Get[Lấy MODEL_ID từ Env Var của Render];
+        Get--> Download[Tải model từ Google Drive];
+        Download --> Load[Load Model YOLO vào RAM];
+        
+        Load --> Ready(Server Sẵn sàng);
+    end
+
+    subgraph "Frontend" [Giai đoạn 2: Xử lý yêu cầu]
         A(Bắt đầu: User chọn ảnh) --> B[js: tạo formData cho file ảnh];
         B --> C[js: gửi Fetch POST đến /api/predict];
-        H[JS: Nhận JSON từ server] --> I["JS: Gán chuỗi Base64 vào <img> Data URL"];
+        H[JS: Nhận JSON từ server] --> I[JS: Gán chuỗi Base64 vào img Data URL];
         I --> J[Hiển thị ảnh đã bounding box và text kết quả ];
         J --> K(Kết thúc: User thấy kết quả);
         
