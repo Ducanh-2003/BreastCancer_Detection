@@ -3,6 +3,8 @@ from PIL import Image
 import io
 import base64
 
+import gc 
+
 def get_prediction(img_bytes):
     if model is None:
         raise ValueError("Model unloaded.")
@@ -38,6 +40,8 @@ def get_prediction(img_bytes):
             print(f"Ignored noise with confidence {confidence}")
             continue
     
+    del img, result, img_with_boxes, img_result, buf
+    gc.collect()
     print(f"Resulting detections: {detections}")
     return {
         "image_base64": img_base64,

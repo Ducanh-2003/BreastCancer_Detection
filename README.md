@@ -74,37 +74,27 @@
 
 ## **Flowchart:**
 ```mermaid
-flowchart BT
+flowchart TD
 
-    subgraph Init [Giai đoạn 1: Khởi động Server]
-        Start(Chạy run.py) --> Check{Kiểm tra file .pt}
-        
-        %% Nhánh Local
-        Check -- "Đã có (Local)" --> Load
-        
-        %% Nhánh Production
-        Check -- "Chưa có (Production)" --> Get[Lấy MODEL_ID từ Env Var của Render];
-        Get--> Download[Tải model từ Google Drive];
-        Download --> Load[Load Model YOLO vào RAM];
-        
-        Load --> Ready(Server Sẵn sàng);
+    subgraph Initialization [Khởi tạo Hệ thống]
+        LoadWeight[Load file trọng số best_model.pt <br> vào RAM]
     end
 
-    subgraph "Frontend" [Giai đoạn 2: Xử lý yêu cầu]
-        A(Bắt đầu: User chọn ảnh) --> B[js: tạo formData cho file ảnh];
-        B --> C[js: gửi Fetch POST đến /api/predict];
-        H[JS: Nhận JSON từ server] --> I[JS: Gán chuỗi Base64 vào img Data URL];
-        I --> J[Hiển thị ảnh đã bounding box và text kết quả ];
-        J --> K(Kết thúc: User thấy kết quả);
+    subgraph Client [Xử lý yêu cầu]
+        A(Bắt đầu: User chọn ảnh) --> B[JS: tạo formData cho file ảnh];
+        B --> C[JS: gửi Fetch API 'POST' đến /api/predict];
+        G[JS: Nhận response JSON] --> H[JS: Gán chuỗi Base64 vào img Data URL];
+        H --> I[Hiển thị ảnh đã bounding box và text kết quả];
+        I --> J(Kết thúc: User thấy kết quả);
         
     end
 
     subgraph "Backend"
         C --> D[Flask: /api/predict nhận request];
-        D --> E[Đọc ảnh dạng bytes, gọi hàm];
-        E --> F[Model nhận img và chạy dự đoán];
-        F --> G[Vẽ bounding bõ và mã hóa base64 ảnh];
-        G --> H[Trả về JSON gồm ảnh encoded và text dự đoán];
+        D --> E[Chuyển đổi dữ liệu ảnh bytes sang định dạng PIL Image. <br>Gọi model YOLOv8 để phát hiện đối tượng];
+        E --> F[Sử dụng .plot của Ultralytics để tự động vẽ bounding box và gán nhãn lên ảnh];
+        F --> G[Gửi response JSON lên frontend<br>Gồm ảnh kết quả đã được encoded Base64 và kết quả chứa tên lớp và độ tin cậy];
+
     end
 
     

@@ -1,6 +1,5 @@
 Flask
 ultralytics
 Pillow
-gunicorn
 opencv-python-headless
 gdown 
