@@ -1,6 +1,6 @@
 from ultralytics import YOLO
 import os
-from gdown import gdown
+import gdown
 
 def load_model(model_path = None):
     # try:
