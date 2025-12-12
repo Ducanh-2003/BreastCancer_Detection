@@ -27,23 +27,30 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!file) {
             alert('Please select an image file first.');
             return;
-        }   
+        }
+
+        const originalBtnText = btn_predict.innerHTML;
+        btn_predict.innerHTML = 'Analyzing...';
+        btn_predict.disabled = true;
+        txt_loading.style.display = 'block';
+        
+        box_result.style.display = 'none'; 
+        
         const formData = new FormData();
         formData.append('file', file);
 
-        try{
+        try {
             const response = await fetch(api_url, {
                 method: 'POST',
                 body: formData
             });
 
             console.log('Response status:', response.status);
-            console.log('Response headers:', response.headers);
             
             const data = await response.json();
             console.log('Response data:', data);
 
-            if (data.error) {   
+            if (data.error) {
                 alert('Error: ' + data.error);
             } else {
                 img_result.src = "data:image/jpeg;base64," + data.image_base64;
@@ -58,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         const style = det.class.includes('inflammation') || det.class.includes('fibrosis') || det.class.includes('ballooning') || det.class.includes('steatosis') ? 'color:red; font-weight: bold' : '';
                         li.innerHTML = `<span style="${style}">${det.class} - Confidence: ${(det.confidence * 100).toFixed(2)}%</span>`;
                         ul.appendChild(li);
-                    });     
+                    });
                     txt_result.appendChild(ul);
                 }
                 box_result.style.display = 'block';
@@ -68,6 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } finally {
             txt_loading.style.display = 'none';
             btn_predict.disabled = false;
+            btn_predict.innerHTML = originalBtnText;
         }
     });
-})
+});

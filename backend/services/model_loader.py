@@ -5,7 +5,7 @@ import gdown
 def load_model():
     current_dir = os.path.dirname(os.path.abspath(__file__))
     model_path = os.path.join(current_dir, '..', 'best_model.pt')
-    model_path = os.path.abspath(model_path)
+    model_path = os.path.abspath(model_path) 
 
     if not os.path.exists(model_path):
         print(f"Model not found at {model_path}. Starting download from Drive...")
