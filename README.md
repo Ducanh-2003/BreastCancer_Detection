@@ -1,6 +1,6 @@
-# **BreastCancer Detection**
+# **Liver Diseases Detection**
 
-## A Flask-based web application for breast cancer prediction from histopathology images.
+## A Flask-based web application for liver diseases prediction from histopathology images.
 
 # **Tuần 1 (17/11/2025 - 21/11/2025)**
 
@@ -32,7 +32,7 @@
 
 # **Tuần 3 (1/12/2025 - 5/12/2025)**
 
->## ***1/12/2025***
+>## ***1-5/12/2025***
 
 ## **Những gì đã học và làm được:**
 * ## Tìm hiểu các hàm biến đổi ảnh thực thi như thế nào với thư viện OpenCV 
@@ -40,7 +40,9 @@
 * ## Cải thiện lại ở bước prepossesing và augmentation dataset chính xác hơn
 * ## Retrain model với dataset mới 
 
-> ## ***4-8/12/2025***
+# **Tuần 4 (8/12/2025 - 12/12/2025)**
+
+> ## ***8-12/12/2025***
 
 ## **Những gì đã học và làm được:**
 * ## Đổi lại bộ dataset từ classification mô bệnh tế bào ung thư (tế bào bình thường và tế bào ung thư giai đoạn 1,2,3) sang object detection các bệnh về gan (gan phình to, xơ gan, viêm gan, gan nhiễm mỡ).
