@@ -2,15 +2,17 @@
 
 ## A Flask-based web application for liver diseases prediction from histopathology images.
 
-## Dataset: https://universe.roboflow.com/roboflow-100/liver-disease
+## Dataset: 
+* ## https://universe.roboflow.com/roboflow-100/liver-disease
+* ## https://universe.roboflow.com/rf100-vl/liver-disease-jyvvu-fash
 
 ## Cấu trúc dataset: 3976 ảnh
 |  | Train | Valid | Test |
 |---|---|---|---|
-| Ballooning | 698 | 198 | 100 |
-| Fibrosis | 694 | 198 | 100 |
-| Inflammation | 688 | 196 | 100 |
-| Steatosis | 693 | 198 | 99 |
+| Ballooning | 1395 | 389 | 204 |
+| Fibrosis | 1395 | 394 | 195 |
+| Inflammation | 1378 | 401 | 191 |
+| Steatosis | 1380 | 398 | 200 |
 | null | 8 | 4 | 0 |
 
 ## Tài liệu tham khảo: 
@@ -18,9 +20,6 @@
 ## https://docs.roboflow.com/datasets/dataset-versions/image-augmentation
 ## https://docs.roboflow.com/annotate/use-roboflow-annotate#mark-null
 
-
-
-## **Link demo:** [![Render](https://img.shields.io/badge/Render-Live_App-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://breastcancer-detection-4o3g.onrender.com/)
 
 ## **Flowchart:**
 ```mermaid
