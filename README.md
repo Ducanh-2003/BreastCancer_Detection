@@ -6,7 +6,7 @@
 * ## https://universe.roboflow.com/roboflow-100/liver-disease
 * ## https://universe.roboflow.com/rf100-vl/liver-disease-jyvvu-fash
 
-## Cấu trúc dataset: 3976 ảnh
+## Cấu trúc dataset: 7934 ảnh
 |  | Train | Valid | Test |
 |---|---|---|---|
 | Ballooning | 1395 | 389 | 204 |
